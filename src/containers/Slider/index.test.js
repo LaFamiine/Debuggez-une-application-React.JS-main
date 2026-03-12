@@ -35,10 +35,9 @@ describe("When slider is created", () => {
         <Slider />
       </DataProvider>
     );
-    await screen.findByText("World economic forum");
-    await screen.findByText("janvier");
-    await screen.findByText(
-      "Oeuvre à la coopération entre le secteur public et le privé."
-    );
+
+    await screen.findByText("World Gaming Day");
+    await screen.findByText("mars");
+    await screen.findByText("Evenement mondial autour du gaming");
   });
 });
