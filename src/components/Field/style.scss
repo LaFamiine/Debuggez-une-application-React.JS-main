@@ -42,3 +42,14 @@ textarea {
 
   font-family: "Manrope", sans-serif;
 }
+
+.field-error {
+  border: 2px solid red !important;
+  color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 11px;
+  margin: 4px 8px 0;
+}
