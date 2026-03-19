@@ -19,6 +19,7 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder, onChan
           onChange={onChange}
           value={value}
           className={error ? "field-error" : ""}
+          required 
         />
       );
       break;
@@ -30,6 +31,7 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder, onChan
           onChange={onChange}
           value={value}
           className={error ? "field-error" : ""}
+          required 
         />
       );
       break;
@@ -43,6 +45,7 @@ const Field = ({ type = FIELD_TYPES.INPUT_TEXT, label, name, placeholder, onChan
           onChange={onChange}
           value={value}
           className={error ? "field-error" : ""}
+          required 
         />
       );
   }
