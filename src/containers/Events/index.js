@@ -19,7 +19,6 @@ const EventList = () => {
       : data?.events.filter((event) => event.type === type)
   ) || [];
 
-  // ✅ Liste filtrée AVEC pagination
   const filteredEvents = filteredByType.filter((event, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
@@ -35,7 +34,6 @@ const EventList = () => {
     setType(evtType);
   };
 
-  // ✅ pageNumber basé sur filteredByType
   const pageNumber = Math.ceil(filteredByType.length / PER_PAGE);
   const typeList = new Set((data?.events || []).map((event) => event.type));
   return (

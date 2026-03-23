@@ -16,46 +16,31 @@ const Form = ({ onSuccess, onError }) => {
     email: "",
     message: "",
   });
-  const [errors, setErrors] = useState({});
 
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
-
-      const newErrors = {};
-      if (!values.nom) newErrors.nom = "Champ requis";
-      if (!values.prenom) newErrors.prenom = "Champ requis";
-      if (!values.type) newErrors.type = "Champ requis";
-      if (!values.email) newErrors.email = "Champ requis";
-      if (!values.message) newErrors.message = "Champ requis";
-
-      if (Object.keys(newErrors).length > 0) {
-        setErrors(newErrors);
-        return;
-      }
-
       setSending(true);
-     try {
-  await mockContactApi();
-  setSending(false);
-  setSent(true);
-  onSuccess();
-  setTimeout(() => setSent(false), 3000);
-} catch (err) {
-  setSending(false);
-  onError(err);
-}
+      try {
+        await mockContactApi();
+        setSending(false);
+        setSent(true);
+        onSuccess();
+      } catch (err) {
+        setSending(false);
+        onError(err);
+      }
     },
-    [values, onSuccess, onError]
+    [onSuccess, onError]
   );
 
- if (sent) {
-  return (
-    <div className="successMessage">
-      <p> Votre message a bien été envoyé !</p>
-    </div>
-  );
-}
+  if (sent) {
+    return (
+      <div className="successMessage">
+        <p>Message envoyé !</p>
+      </div>
+    );
+  }
 
   return (
     <form onSubmit={sendContact}>
@@ -66,14 +51,12 @@ const Form = ({ onSuccess, onError }) => {
             label="Nom"
             value={values.nom}
             onChange={(e) => setValues({ ...values, nom: e.target.value })}
-            error={errors.nom}
           />
           <Field
             placeholder=""
             label="Prénom"
             value={values.prenom}
             onChange={(e) => setValues({ ...values, prenom: e.target.value })}
-            error={errors.prenom}
           />
           <Select
             selection={["Personel", "Entreprise"]}
@@ -82,13 +65,11 @@ const Form = ({ onSuccess, onError }) => {
             type="large"
             titleEmpty
           />
-          {errors.type && <p className="error">{errors.type}</p>}
           <Field
             placeholder=""
             label="Email"
             value={values.email}
             onChange={(e) => setValues({ ...values, email: e.target.value })}
-            error={errors.email}
           />
           <Button type={BUTTON_TYPES.SUBMIT} disabled={sending}>
             {sending ? "En cours" : "Envoyer"}
@@ -101,7 +82,6 @@ const Form = ({ onSuccess, onError }) => {
             type={FIELD_TYPES.TEXTAREA}
             value={values.message}
             onChange={(e) => setValues({ ...values, message: e.target.value })}
-            error={errors.message}
           />
         </div>
       </div>
