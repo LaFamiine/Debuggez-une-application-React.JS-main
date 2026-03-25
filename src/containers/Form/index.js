@@ -34,14 +34,6 @@ const Form = ({ onSuccess, onError }) => {
     [onSuccess, onError]
   );
 
-  if (sent) {
-    return (
-      <div className="successMessage">
-        <p>Message envoyé !</p>
-      </div>
-    );
-  }
-
   return (
     <form onSubmit={sendContact}>
       <div className="row">
