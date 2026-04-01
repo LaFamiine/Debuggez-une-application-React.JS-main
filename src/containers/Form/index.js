@@ -8,7 +8,6 @@ const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 500)
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
-  const [sent, setSent] = useState(false);
   const [values, setValues] = useState({
     nom: "",
     prenom: "",
@@ -24,7 +23,6 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
-        setSent(true);
         onSuccess();
       } catch (err) {
         setSending(false);
